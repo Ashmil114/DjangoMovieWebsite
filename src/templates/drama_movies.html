@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Comedy{% endblock %}
+
+{% block SladeShow %}
+
+<div class="containers">
+  <div
+    id="carouselExampleFade"
+    class="carousel slide carousel-fade"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="static/img/mini.png" class="d-block w-100" alt="..." />
+      </div>
+      <div class="carousel-item">
+        <img src="static/img/mini2.jpg" class="d-block w-100" alt="..." />
+      </div>
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleFade"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleFade"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+{% endblock %} 
+
+{% block Drama %}
+  
+  <div class="mx-3 mt-3" id="com">
+    <h3 style="color: rgba(255, 255, 255, 0.3)">DRAMA MOVIES</h3>
+  </div>
+  <div class="mt-3 mb-5 mx-3 overflow-hidden">
+    <div class="row row-cols-3 row-cols-lg-6 row-cols-sm-3 row-cols-md-4 g-4">
+        {% for dra in dra_list %}
+        {% if dra.category == 'DRAMA' %}
+        <div class="col">
+            <div class="card ">
+            <img src="{{dra.image.url}}" class="card-img-top" alt="..." />
+            <div class="card-body">
+                <h5 class="card-title" style="font-weight: bold;">{{ dra.title }}</h5>
+                <h6 class="card-text">{{ dra.year_of_production}} / {{ dra.language}} / {{ dra.category}}</h6>
+            </div>
+            <a href="{% url 'movies:TrailerWatch' dra.id %}"><button class="btn btn-danger my-2 w-100">Watch Trailer</button></a>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+  </div>
+  
+{% endblock %} 
